@@ -114,7 +114,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 return false;
             }
             
-            // Checking to ensure no digits are entered
+            // Checking to ensure no digits or special characters are entered
             if (HasDigits(name) || HasSpecialChar(name))
             {
                 Console.WriteLine("Invalid! Please enter a name that doesn't include digits or special characters");
@@ -156,6 +156,17 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// Calulates the age when the birth year is input as a parameter
+        /// </summary>
+        /// <param name="birthYear">Accepts the user's birth year</param>
+        /// <returns>Returns the user's age based on what year they input</returns>
+        static int AgeCalulator(int birthYear)
+        {
+            int age = DateTime.Now.Year - birthYear;
+            return age;
         }
 
     }
