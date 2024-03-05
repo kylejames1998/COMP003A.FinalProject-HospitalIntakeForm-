@@ -8,20 +8,32 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
     {
         static void Main(string[] args)
         {
+            string fName;
+            string lName;
+            string birthYear;
+            char gender;
+
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Welcome to James Hospital!");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("Please fill out the following:");
             Console.WriteLine();
-            Console.Write("Please enter your first name: ");
-            string fName = Console.ReadLine();
+            do
+            {
+                Console.Write("Please enter your first name: ");
+                fName = Console.ReadLine();
+            }
+            while (!ValidNameChecker(fName));
+            Console.WriteLine("Thank you!");
             Console.Write("Please enter your last name: ");
-            string lName = Console.ReadLine();
+            //string lName = Console.ReadLine();
             Console.Write("Please enter your birth year: ");
-            int birthYear = Convert.ToInt32(Console.ReadLine());
+           //int birthYear = Convert.ToInt32(Console.ReadLine());
             Console.Write("Please enter your gender (M, F, O): ");
-            char gender = Convert.ToChar(Console.ReadLine());
+           // char gender = Convert.ToChar(Console.ReadLine());
             Console.WriteLine();
+            string[] questions = { "What is your height?", "What is your weight?", "Are you having COVID symptoms?", "Do you use tobacco?", "Who is your primary physician?", "Who is your employer?", "Do you have a California Health Care Directive?", "Have you ever been diagnosed with diabetes?", "Do you exercise?","Do you have a driver's license"};
+            
 
             Console.WriteLine("Please answer the following questions:");
             Console.Write("What is your height: ");
@@ -79,6 +91,71 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                     return;
                 }
             }
+        }
+
+        /// <summary>
+        /// Checks name to validate the data and ensure that it doesn't include digits, special characters, or is null
+        /// </summary>
+        /// <param name="name">Accepts the name you want to validate</param>
+        /// <returns>Returns true if the name passes all validity checks. Returns false if it does not pass.</returns>
+        static bool ValidNameChecker(string name)
+        {
+            // checking for empty string
+            if (string.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("Invalid! Please enter a name.");
+                return false;
+            }
+
+            // Checing to ensure no digits are entered
+            if (HasDigits(name))
+            {
+                Console.WriteLine("Invalid! Please enter a name that doesn't include digits");
+                return false;
+            }
+
+            // Checking for special characters
+            if (HasSpecialChar(name))
+            {
+                Console.WriteLine("Invalid! Please enter a name that doesn't include special characters");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Checks to ensure there are no special characters entered in a name field
+        /// </summary>
+        /// <param name="input">Accepts the name you want to traverse</param>
+        /// <returns>Returns true if the name includes a special character. Returns false if it does not</returns>
+        static bool HasSpecialChar(string input)
+        {
+            foreach (char c in input)
+            {
+                if (c == '*' || c == '(' || c == '%' || c == '@' || c == '!' || c == '#' || c == '$' || c == '^' || c == '&' || c == '_' || c == '-')
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Checks to ensure there are no digits entered in a name field
+        /// </summary>
+        /// <param name="input">Accepts the name you want to traverse</param>
+        /// <returns>Returns true if the name includes a digit. Returns false if it does not.</returns>
+        static bool HasDigits(string input)
+        {
+            foreach (char c in input)
+            {
+                if (!char.IsDigit(c))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }
