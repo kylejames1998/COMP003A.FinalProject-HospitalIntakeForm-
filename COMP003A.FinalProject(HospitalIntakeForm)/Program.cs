@@ -89,23 +89,31 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.Clear();
 
             // Profile summary section
+            // changes header text color
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Welcome to James Hospital!");
+            // changes the rest of the text color
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine();
             Console.WriteLine("Profile Summary:");
+            Console.WriteLine();
             Console.WriteLine($"Hello {lName} , {fName}");
             Console.WriteLine($"Age: {AgeCalulator(birthYear)}");
-            // add gender full description output here
+            // Converts and prints the correct gender to the console
+            Console.WriteLine($"Gender: {GenderConversion(gender)}");
+            Console.WriteLine();
             Console.WriteLine("Questionnaire:");
             // Loop to print all questions and answers to the console in order
             for (int i = 0; i <questions.Length; i++)
             {
+                // used i + 1 so that the first question is labeled Question 1 (0 based indexing)
                 Console.WriteLine($"Question {i + 1}: {questions[i]}");
                 Console.WriteLine($"Response {i + 1}: {userResponses[i]}");
                 // adds space between each set of question/answer
                 Console.WriteLine();
             }
 
-
+            
 
         }
 
@@ -227,6 +235,28 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 default:
                     Console.WriteLine("Invalid! Please enter 'M' for male, 'F' for female, 'N' for non-binary, or 'O' for any genders that are not listed");
                     return false;
+            }
+        }
+
+        /// <summary>
+        /// Converts teh single character gender to the full description (EX: M->Male, F-> Female... etc)
+        /// </summary>
+        /// <param name="gender">Accepts a string input</param>
+        /// <returns>Returns the full description of whatever gender is passed in as a parameter</returns>
+         static string GenderConversion(string gender)
+        {
+            switch (gender.ToUpper())
+            {
+                case "M":
+                    return "Male";                  
+                case "F":
+                    return "Female";                  
+                case "O":
+                    return "Other/ Not listed";                  
+                case "N":
+                    return "Non-Binary";
+                default:
+                    return "Invalid gender.";   
             }
         }
     }
