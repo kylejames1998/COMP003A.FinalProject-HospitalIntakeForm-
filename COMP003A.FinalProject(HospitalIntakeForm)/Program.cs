@@ -11,7 +11,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             string fName;
             string lName;
             int birthYear;
-            char gender;
+            string gender;
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Welcome to James Hospital!");
@@ -37,16 +37,21 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 Console.Write("Please enter your birth year: ");
                 birthYear = Convert.ToInt32(Console.ReadLine());
             }
-            while (BirthYearValidator(birthYear));
+            while (!BirthYearValidator(birthYear));
 
-            Console.Write("Please enter your birth year: ");
-            birthYear = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Please enter your gender (M, F, O): ");
-           // char gender = Convert.ToChar(Console.ReadLine());
+            do
+            {
+                Console.Write("Please enter your gender (M, F, O, N): ");
+                gender = Console.ReadLine();
+            }
+            while (!GenderValidator(gender));
+           // change this to a string ----> char gender = Convert.ToChar(Console.ReadLine());
             Console.WriteLine();
+            // an array of strings that holds all the questionnaire questions
             string[] questions = { "What is your height?", "What is your weight?", "Are you having COVID symptoms?", "Do you use tobacco?", "Who is your primary physician?", "Who is your employer?", "Do you have a California Health Care Directive?", "Have you ever been diagnosed with diabetes?", "Do you exercise?","Do you have a driver's license"};
-            
+            Console.Clear();
 
+            // Questionarre Beginning
             Console.WriteLine("Please answer the following questions:");
             Console.Write("What is your height: ");
             string answer1 = Console.ReadLine();
@@ -68,6 +73,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             string answer9 = Console.ReadLine();
             Console.Write("Do you have a driver's license: ");
             string answer10 = Console.ReadLine();
+            // An array of strings that holds all the user responses to the questions
             string[] userResponses = new string[10];
             AddToArray(answer1, userResponses);
             AddToArray(answer2, userResponses);
@@ -79,9 +85,24 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             AddToArray(answer8, userResponses);
             AddToArray(answer9, userResponses);
             AddToArray(answer10, userResponses);
-            foreach (var response in userResponses)
+            // clears the console window before displaying the desired output
+            Console.Clear();
+
+            // Profile summary section
+            Console.WriteLine("Welcome to James Hospital!");
+            Console.WriteLine();
+            Console.WriteLine("Profile Summary:");
+            Console.WriteLine($"Hello {lName} , {fName}");
+            Console.WriteLine($"Age: {AgeCalulator(birthYear)}");
+            // add gender full description output here
+            Console.WriteLine("Questionnaire:");
+            // Loop to print all questions and answers to the console in order
+            for (int i = 0; i <questions.Length; i++)
             {
-                Console.WriteLine(response);
+                Console.WriteLine($"Question {i + 1}: {questions[i]}");
+                Console.WriteLine($"Response {i + 1}: {userResponses[i]}");
+                // adds space between each set of question/answer
+                Console.WriteLine();
             }
 
 
@@ -181,12 +202,32 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
         /// <returns>Returns false if the birth year is invalid. Returns true if the birth year is valid.</returns>
         static bool BirthYearValidator(int birthYear)
         {
-            if (birthYear > 2024 || birthYear < 1900)
+            if (birthYear > DateTime.Now.Year || birthYear < 1900)
             {
                 Console.WriteLine("Invalid! Please enter a year between 1900-2024.");
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Ensures that only M, F, O, or N are the only characters entered in the gender field
+        /// </summary>
+        /// <param name="gender">Accepts gender as a parameter</param>
+        /// <returns> Returns false if the gender is incorrect. Returns true if the gender is valid</returns>
+        static bool GenderValidator(string gender)
+        {
+            switch (gender.ToUpper())
+            {
+                case "M":
+                case "N":
+                case "F":
+                case "O":
+                    return true;
+                default:
+                    Console.WriteLine("Invalid! Please enter 'M' for male, 'F' for female, 'N' for non-binary, or 'O' for any genders that are not listed");
+                    return false;
+            }
         }
     }
 
