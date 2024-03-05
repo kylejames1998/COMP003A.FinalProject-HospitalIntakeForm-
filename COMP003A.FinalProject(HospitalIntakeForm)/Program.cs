@@ -10,7 +10,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
         {
             string fName;
             string lName;
-            string birthYear;
+            int birthYear;
             char gender;
 
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -32,10 +32,15 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             }
             while (!ValidNameChecker(lName));
             Console.WriteLine("Thank you!");
-            Console.Write("Please enter your last name: ");
-            //string lName = Console.ReadLine();
+            do
+            {
+                Console.Write("Please enter your birth year: ");
+                birthYear = Convert.ToInt32(Console.ReadLine());
+            }
+            while (BirthYearValidator(birthYear));
+
             Console.Write("Please enter your birth year: ");
-           //int birthYear = Convert.ToInt32(Console.ReadLine());
+            birthYear = Convert.ToInt32(Console.ReadLine());
             Console.Write("Please enter your gender (M, F, O): ");
            // char gender = Convert.ToChar(Console.ReadLine());
             Console.WriteLine();
@@ -47,7 +52,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             string answer1 = Console.ReadLine();
             Console.Write("What is your weight: ");
             string answer2 = Console.ReadLine();
-            Console.Write("Are you having covid symptoms: ");
+            Console.Write("Are you having COVID symptoms: ");
             string answer3 = Console.ReadLine();
             Console.Write("Do you use tobacco: ");
             string answer4 = Console.ReadLine();
@@ -169,6 +174,20 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             return age;
         }
 
+        /// <summary>
+        /// Checks for a valid birth year (Between years 1900-1024)
+        /// </summary>
+        /// <param name="birthYear">Accepts user's birth year as a parameter</param>
+        /// <returns>Returns false if the birth year is invalid. Returns true if the birth year is valid.</returns>
+        static bool BirthYearValidator(int birthYear)
+        {
+            if (birthYear > 2024 || birthYear < 1900)
+            {
+                Console.WriteLine("Invalid! Please enter a year between 1900-2024.");
+                return false;
+            }
+            return true;
+        }
     }
 
 }
