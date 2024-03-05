@@ -23,7 +23,14 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 Console.Write("Please enter your first name: ");
                 fName = Console.ReadLine();
             }
-            while (ValidNameChecker(fName));
+            while (!ValidNameChecker(fName));
+
+            do
+            {
+                Console.Write("Please enter your last name: ");
+                lName = Console.ReadLine();
+            }
+            while (!ValidNameChecker(lName));
             Console.WriteLine("Thank you!");
             Console.Write("Please enter your last name: ");
             //string lName = Console.ReadLine();
@@ -101,23 +108,22 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
         static bool ValidNameChecker(string name)
         {
             // checking for empty string
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrWhiteSpace(name))
             {
                 Console.WriteLine("Invalid! Please enter a name.");
-                return true;
+                return false;
             }
-
+            
             // Checking to ensure no digits are entered
             if (HasDigits(name) || HasSpecialChar(name))
             {
                 Console.WriteLine("Invalid! Please enter a name that doesn't include digits or special characters");
-                return true;
+                return false;
             }
-
-
-            return false;
+            
+            return true;
         }
-
+            
         /// <summary>
         /// Checks to ensure there are no special characters entered in a name field
         /// </summary>
@@ -144,7 +150,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
         {
             foreach (char c in name)
             {
-                if (!char.IsDigit(c))
+                if (char.IsDigit(c))
                 {
                     return true;
                 }
