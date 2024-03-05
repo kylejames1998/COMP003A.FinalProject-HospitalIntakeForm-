@@ -107,15 +107,15 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 return false;
             }
 
-            // Checing to ensure no digits are entered
-            if (HasDigits(name))
+            // Checking to ensure no digits are entered
+            if (HasSpecialChar(name))
             {
                 Console.WriteLine("Invalid! Please enter a name that doesn't include digits");
                 return false;
             }
 
             // Checking for special characters
-            if (HasSpecialChar(name))
+            if (HasDigits(name))
             {
                 Console.WriteLine("Invalid! Please enter a name that doesn't include special characters");
                 return false;
@@ -129,9 +129,9 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
         /// </summary>
         /// <param name="input">Accepts the name you want to traverse</param>
         /// <returns>Returns true if the name includes a special character. Returns false if it does not</returns>
-        static bool HasSpecialChar(string input)
+        static bool HasSpecialChar(string name)
         {
-            foreach (char c in input)
+            foreach (char c in name)
             {
                 if (c == '*' || c == '(' || c == '%' || c == '@' || c == '!' || c == '#' || c == '$' || c == '^' || c == '&' || c == '_' || c == '-')
                 {
@@ -146,9 +146,9 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
         /// </summary>
         /// <param name="input">Accepts the name you want to traverse</param>
         /// <returns>Returns true if the name includes a digit. Returns false if it does not.</returns>
-        static bool HasDigits(string input)
+        static bool HasDigits(string name)
         {
-            foreach (char c in input)
+            foreach (char c in name)
             {
                 if (!char.IsDigit(c))
                 {
