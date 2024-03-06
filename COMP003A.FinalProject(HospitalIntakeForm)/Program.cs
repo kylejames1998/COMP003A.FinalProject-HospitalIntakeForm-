@@ -63,10 +63,20 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
 
             // Questionarre Beginning
             Console.WriteLine("Please answer the following questions:");
-            Console.Write("What is your height: ");
-            //string answer1 = Console.ReadLine();
-            Console.Write("What is your weight: ");
-           // string answer2 = Console.ReadLine();
+            do
+            {
+                Console.Write("What is your height: ");
+                answer1 = Console.ReadLine();
+            }
+            while (!ContainsDigits(answer1));
+
+            do
+            {
+                Console.Write("What is your weight: ");
+                answer2 = Console.ReadLine();
+            }
+            while (!ContainsDigits(answer2));
+
             do
             {
                 Console.Write("Are you having COVID symptoms: ");
@@ -261,6 +271,24 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
         }
 
         /// <summary>
+        /// Checks the answer to ensure that only digits are entered
+        /// </summary>
+        /// <param name="answer">Accepst a string answer as a parameter</param>
+        /// <returns>Returns false if answer contains any characters other than a digit. Returns true if the anser only contains digits</returns>
+        static bool ContainsDigits(string answer)
+        {
+            foreach (char c in answer)
+            {
+                if (!char.IsDigit(c))
+                {
+                    Console.WriteLine("Please enter a height/weight with digits only.");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Calulates the age when the birth year is input as a parameter
         /// </summary>
         /// <param name="birthYear">Accepts the user's birth year</param>
@@ -355,8 +383,6 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             
         }
 
-        // add a method here that checks for yes and no on questions that require a yes or no answer
-        // also add a method here that checks for no digits for the questions (maybe change the above one to work for both) -> Make a constructor with different jobs?
     }
 
 }
