@@ -34,6 +34,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 fName = Console.ReadLine();
             }
             while (!ValidNameChecker(fName));
+            Console.WriteLine("Thank you!");
 
             do
             {
@@ -48,14 +49,14 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 birthYear = Convert.ToInt32(Console.ReadLine());
             }
             while (!BirthYearValidator(birthYear));
-
+            Console.WriteLine("Thank you!");
             do
             {
                 Console.Write("Please enter your gender (M, F, O, N, TW, TM, A): ");
                 gender = Console.ReadLine();
             }
             while (!GenderValidator(gender));
-           
+            Console.WriteLine("Thank you!");
             Console.WriteLine();
             // an array of strings that holds all the questionnaire questions
             string[] questions = { "What is your height?", "What is your weight?", "Are you having COVID symptoms?", "Do you use tobacco?", "Who is your primary physician?", "Who is your employer?", "Do you have a California Health Care Directive?", "Have you ever been diagnosed with diabetes?", "Do you exercise?","Do you have a driver's license"};
@@ -69,78 +70,78 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 answer1 = Console.ReadLine();
             }
             while (!ContainsDigits(answer1));
-
+            Console.WriteLine("Thank you!");
             do
             {
                 Console.Write("What is your weight: ");
                 answer2 = Console.ReadLine();
             }
             while (!ContainsDigits(answer2));
-
+            Console.WriteLine("Thank you!");
             do
             {
                 Console.Write("Are you having COVID symptoms: ");
                  answer3 = Console.ReadLine();
             }
             while (!SimpleAnswerChecker(answer3));
-            
+            Console.WriteLine("Thank you!");
             do
             {
                 Console.Write("Do you use tobacco: ");
                 answer4 = Console.ReadLine();
             }
             while(!SimpleAnswerChecker(answer4));
-           
+            Console.WriteLine("Thank you!");
             do
             {
                 Console.Write("Who is your primary physician: ");
                 answer5 = Console.ReadLine();
             }
             while (!NullChecker(answer5));
-            
+            Console.WriteLine("Thank you!");
             do
             {
                 Console.Write("Who is your employer: ");
                 answer6 = Console.ReadLine();
             }
             while (!NullChecker(answer6));
-
+            Console.WriteLine("Thank you!");
             do
             {
                 Console.Write("Do you have a California Health Care Directive: ");
                 answer7 = Console.ReadLine();
             }
             while (!SimpleAnswerChecker(answer7));
-
+            Console.WriteLine("Thank you!");
             do
             {
                Console.Write("Have you ever been diagnosed with diabetes: ");
                 answer8 = Console.ReadLine();
             }
             while (!SimpleAnswerChecker(answer8));
-
+            Console.WriteLine("Thank you!");
             do
             {
                 Console.Write("Do you exercise: ");
                 answer9 = Console.ReadLine();
             } 
-            while (!SimpleAnswerChecker(answer9)); 
-  
+            while (!SimpleAnswerChecker(answer9));
+            Console.WriteLine("Thank you!");
             do
             {
                 Console.Write("Do you have a driver's license: ");
                 answer10 = Console.ReadLine();
             }
             while (!SimpleAnswerChecker(answer10));
-
+            Console.WriteLine("Thank you!");
             // An array of strings that holds all the user responses to the questions
             string[] userResponses = new string[10];
-           // AddToArray(answer1, userResponses);
-           // AddToArray(answer2, userResponses);
+            AddToArray(answer1, userResponses);
+            AddToArray(answer2, userResponses);
             AddToArray(answer3, userResponses);
             AddToArray(answer4, userResponses);
-           // AddToArray(answer5, userResponses);
-           // AddToArray(answer6, userResponses);
+            AddToArray(answer5, userResponses);
+            AddToArray(answer6, userResponses);
             AddToArray(answer7, userResponses);
             AddToArray(answer8, userResponses);
             AddToArray(answer9, userResponses);
@@ -149,6 +150,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.Clear();
 
             // Profile summary section
+
             // changes header text color
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Welcome to James Hospital!");
