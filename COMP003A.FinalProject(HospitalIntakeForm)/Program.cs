@@ -81,10 +81,19 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             }
             while(!SimpleAnswerChecker(answer4));
            
-            Console.Write("Who is your primary physician: ");
-            //string answer5 = Console.ReadLine();
-            Console.Write("Who is your employer: ");
-           // string answer6 = Console.ReadLine();
+            do
+            {
+                Console.Write("Who is your primary physician: ");
+                answer5 = Console.ReadLine();
+            }
+            while (!NullChecker(answer5));
+            
+            do
+            {
+                Console.Write("Who is your employer: ");
+                answer6 = Console.ReadLine();
+            }
+            while (!NullChecker(answer6));
 
             do
             {
@@ -106,20 +115,14 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 answer9 = Console.ReadLine();
             } 
             while (!SimpleAnswerChecker(answer9)); 
-
-            do
-            {
-                Console.Write("Do you exercise: ");
-                answer9 = Console.ReadLine();
-            }
-            while (!SimpleAnswerChecker(answer9));   
-            
+  
             do
             {
                 Console.Write("Do you have a driver's license: ");
                 answer10 = Console.ReadLine();
             }
             while (!SimpleAnswerChecker(answer10));
+
             // An array of strings that holds all the user responses to the questions
             string[] userResponses = new string[10];
            // AddToArray(answer1, userResponses);
@@ -203,6 +206,21 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             }
             
             return true;
+        }
+
+        /// <summary>
+        /// Checks the string input to ensure it isn't null or empty
+        /// </summary>
+        /// <param name="answer">Accepts a string answer as a parameter</param>
+        /// <returns>Returns false is the string is not empty. Returns true if the string is in fact null.</returns>
+        static bool NullChecker(string answer)
+        {
+            if (answer == "")
+            {
+                Console.WriteLine("Please don't submit an empty answer.");
+                return true;
+            }
+            return false;
         }
             
         /// <summary>
