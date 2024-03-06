@@ -51,11 +51,11 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
 
             do
             {
-                Console.Write("Please enter your gender (M, F, O, N): ");
+                Console.Write("Please enter your gender (M, F, O, N, TW, TM, A): ");
                 gender = Console.ReadLine();
             }
             while (!GenderValidator(gender));
-           // change this to a string ----> char gender = Convert.ToChar(Console.ReadLine());
+           
             Console.WriteLine();
             // an array of strings that holds all the questionnaire questions
             string[] questions = { "What is your height?", "What is your weight?", "Are you having COVID symptoms?", "Do you use tobacco?", "Who is your primary physician?", "Who is your employer?", "Do you have a California Health Care Directive?", "Have you ever been diagnosed with diabetes?", "Do you exercise?","Do you have a driver's license"};
@@ -166,6 +166,9 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             
 
         }
+        /*
+         * METHODS
+         */
 
         /// <summary>
         /// Adds all user answers into an array.
@@ -218,9 +221,9 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             if (answer == "")
             {
                 Console.WriteLine("Please don't submit an empty answer.");
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
             
         /// <summary>
@@ -296,9 +299,13 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 case "N":
                 case "F":
                 case "O":
+                case "TW":
+                case "TM":
+                case "A":
                     return true;
+
                 default:
-                    Console.WriteLine("Invalid! Please enter 'M' for male, 'F' for female, 'N' for non-binary, or 'O' for any genders that are not listed");
+                    Console.WriteLine("Invalid! Please enter 'M' for male, 'F' for female, 'N' for non-binary, 'TW' for transgender woman, 'TM' for transgender man, 'A' for agender , or 'O' for any genders that are not listed");
                     return false;
             }
         }
@@ -320,6 +327,12 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                     return "Other/ Not listed";                  
                 case "N":
                     return "Non-Binary";
+                case "TW":
+                    return "Transgender Woman";
+                case "TM":
+                    return "Transgender Man";
+                case "A":
+                    return "Agender";
                 default:
                     return "Invalid gender.";   
             }
