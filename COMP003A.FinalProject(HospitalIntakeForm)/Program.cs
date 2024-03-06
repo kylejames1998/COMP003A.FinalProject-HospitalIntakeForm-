@@ -52,7 +52,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.WriteLine("Thank you!");
             do
             {
-                Console.Write("Please enter your gender (M, F, O, N, TW, TM, A): ");
+                Console.Write("Please enter your gender (M, F, O, N): ");
                 gender = Console.ReadLine();
             }
             while (!GenderValidator(gender));
@@ -329,13 +329,10 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 case "N":
                 case "F":
                 case "O":
-                case "TW":
-                case "TM":
-                case "A":
                     return true;
 
                 default:
-                    Console.WriteLine("Invalid! Please enter 'M' for male, 'F' for female, 'N' for non-binary, 'TW' for transgender woman, 'TM' for transgender man, 'A' for agender , or 'O' for any genders that are not listed");
+                    Console.WriteLine("Invalid! Please enter 'M' for male, 'F' for female, 'N' for non-binary, or 'O' for any genders that are not listed");
                     return false;
             }
         }
@@ -357,12 +354,6 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                     return "Other/ Not listed";                  
                 case "N":
                     return "Non-Binary";
-                case "TW":
-                    return "Transgender Woman";
-                case "TM":
-                    return "Transgender Man";
-                case "A":
-                    return "Agender";
                 default:
                     return "Invalid gender.";   
             }
