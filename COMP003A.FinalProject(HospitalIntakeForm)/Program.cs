@@ -12,6 +12,16 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             string lName;
             int birthYear;
             string gender;
+            string answer3;
+            string answer1;
+            string answer2;
+            string answer4;
+            string answer5;
+            string answer6;
+            string answer7;
+            string answer8;
+            string answer9;
+            string answer10;
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Welcome to James Hospital!");
@@ -54,33 +64,70 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             // Questionarre Beginning
             Console.WriteLine("Please answer the following questions:");
             Console.Write("What is your height: ");
-            string answer1 = Console.ReadLine();
+            //string answer1 = Console.ReadLine();
             Console.Write("What is your weight: ");
-            string answer2 = Console.ReadLine();
-            Console.Write("Are you having COVID symptoms: ");
-            string answer3 = Console.ReadLine();
-            Console.Write("Do you use tobacco: ");
-            string answer4 = Console.ReadLine();
+           // string answer2 = Console.ReadLine();
+            do
+            {
+                Console.Write("Are you having COVID symptoms: ");
+                 answer3 = Console.ReadLine();
+            }
+            while (!SimpleAnswerChecker(answer3));
+            
+            do
+            {
+                Console.Write("Do you use tobacco: ");
+                answer4 = Console.ReadLine();
+            }
+            while(!SimpleAnswerChecker(answer4));
+           
             Console.Write("Who is your primary physician: ");
-            string answer5 = Console.ReadLine();
+            //string answer5 = Console.ReadLine();
             Console.Write("Who is your employer: ");
-            string answer6 = Console.ReadLine();
-            Console.Write("Do you have a California Health Care Directive: ");
-            string answer7 = Console.ReadLine();
-            Console.Write("Have you ever been diagnosed with diabetes: ");
-            string answer8 = Console.ReadLine();
-            Console.Write("Do you exercise: ");
-            string answer9 = Console.ReadLine();
-            Console.Write("Do you have a driver's license: ");
-            string answer10 = Console.ReadLine();
+           // string answer6 = Console.ReadLine();
+
+            do
+            {
+                Console.Write("Do you have a California Health Care Directive: ");
+                answer7 = Console.ReadLine();
+            }
+            while (!SimpleAnswerChecker(answer7));
+
+            do
+            {
+               Console.Write("Have you ever been diagnosed with diabetes: ");
+                answer8 = Console.ReadLine();
+            }
+            while (!SimpleAnswerChecker(answer8));
+
+            do
+            {
+                Console.Write("Do you exercise: ");
+                answer9 = Console.ReadLine();
+            } 
+            while (!SimpleAnswerChecker(answer9)); 
+
+            do
+            {
+                Console.Write("Do you exercise: ");
+                answer9 = Console.ReadLine();
+            }
+            while (!SimpleAnswerChecker(answer9));   
+            
+            do
+            {
+                Console.Write("Do you have a driver's license: ");
+                answer10 = Console.ReadLine();
+            }
+            while (!SimpleAnswerChecker(answer10));
             // An array of strings that holds all the user responses to the questions
             string[] userResponses = new string[10];
-            AddToArray(answer1, userResponses);
-            AddToArray(answer2, userResponses);
+           // AddToArray(answer1, userResponses);
+           // AddToArray(answer2, userResponses);
             AddToArray(answer3, userResponses);
             AddToArray(answer4, userResponses);
-            AddToArray(answer5, userResponses);
-            AddToArray(answer6, userResponses);
+           // AddToArray(answer5, userResponses);
+           // AddToArray(answer6, userResponses);
             AddToArray(answer7, userResponses);
             AddToArray(answer8, userResponses);
             AddToArray(answer9, userResponses);
@@ -259,6 +306,26 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                     return "Invalid gender.";   
             }
         }
+
+        static bool SimpleAnswerChecker(string answer)
+        {
+            if (answer == "Yes")
+            {
+                return true;
+            }
+            if  (answer == "No") {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Invalid! Please enter either 'Yes' or 'No'. ");
+                return false;
+            }
+            
+        }
+
+        // add a method here that checks for yes and no on questions that require a yes or no answer
+        // also add a method here that checks for no digits for the questions (maybe change the above one to work for both) -> Make a constructor with different jobs?
     }
 
 }
