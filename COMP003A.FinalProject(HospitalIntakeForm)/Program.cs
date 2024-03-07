@@ -159,7 +159,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.WriteLine();
             Console.WriteLine("Profile Summary:");
             Console.WriteLine();
-            Console.WriteLine($"Hello {lName} , {fName}");
+            Console.WriteLine($"Hello {lName}, {fName}");
             Console.WriteLine($"Age: {AgeCalulator(birthYear)}");
             // Converts and prints the correct gender to the console
             Console.WriteLine($"Gender: {GenderConversion(gender)}");
@@ -378,5 +378,5 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
         }
 
     }
-
+    
 }
