@@ -43,6 +43,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             }
             while (!ValidNameChecker(lName));
             Console.WriteLine("Thank you!");
+            
             do
             {
                 Console.Write("Please enter your birth year: ");
@@ -136,21 +137,139 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.WriteLine("Thank you!");
             // An array of strings that holds all the user responses to the questions
             string[] userResponses = new string[10];
-            AddToArray(answer1, userResponses);
-            AddToArray(answer2, userResponses);
-            AddToArray(answer3, userResponses);
-            AddToArray(answer4, userResponses);
-            AddToArray(answer5, userResponses);
-            AddToArray(answer6, userResponses);
-            AddToArray(answer7, userResponses);
-            AddToArray(answer8, userResponses);
-            AddToArray(answer9, userResponses);
-            AddToArray(answer10, userResponses);
+            try
+            {
+                AddToArray(answer1, userResponses);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                AddToArray(answer2, userResponses);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                AddToArray(answer3, userResponses);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                AddToArray(answer4, userResponses);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                AddToArray(answer5, userResponses);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                AddToArray(answer6, userResponses);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                AddToArray(answer7, userResponses);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                AddToArray(answer8, userResponses);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                AddToArray(answer9, userResponses);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                AddToArray(answer10, userResponses);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             // clears the console window before displaying the desired output
             Console.Clear();
 
             // Profile summary section
-
             // changes header text color
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Welcome to James Hospital!");
@@ -162,7 +281,19 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.WriteLine($"Hello {lName}, {fName}");
             Console.WriteLine($"Age: {AgeCalulator(birthYear)}");
             // Converts and prints the correct gender to the console
-            Console.WriteLine($"Gender: {GenderConversion(gender)}");
+            // Catches basic exceptions as well as an argument exception (issue with the parameter passed in)
+            try
+            {
+                Console.WriteLine($"Gender: {GenderConversion(gender)}");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Error! {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error! {ex.Message}");
+            }
             Console.WriteLine();
             Console.WriteLine("Questionnaire:");
             // Loop to print all questions and answers to the console in order
@@ -174,8 +305,6 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 // adds space between each set of question/answer
                 Console.WriteLine();
             }
-
-            
 
         }
 
