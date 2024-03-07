@@ -47,10 +47,26 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             do
             {
                 Console.Write("Please enter your birth year: ");
-                birthYear = Convert.ToInt32(Console.ReadLine());
+                string userAnswer = Console.ReadLine();
+
+                try
+                {
+                    birthYear = Convert.ToInt32(userAnswer);
+
+                    if (BirthYearValidator(birthYear) && NullCheckerr(birthYear))
+                    {
+                        break;
+                    }
+                    Console.WriteLine("Invalid! Please enter a valid integer." );
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine($"Invalid! {ex.Message}");
+                }
             }
-            while (!BirthYearValidator(birthYear));
+            while (true);
             Console.WriteLine("Thank you!");
+
             do
             {
                 Console.Write("Please enter your gender (M, F, O, N): ");
@@ -297,13 +313,25 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.WriteLine();
             Console.WriteLine("Questionnaire:");
             // Loop to print all questions and answers to the console in order
-            for (int i = 0; i <questions.Length; i++)
+            // Catches basic exceptions as well as IndexOutOfRangeExceptions 
+            try
             {
-                // used i + 1 so that the first question is labeled Question 1 (0 based indexing)
-                Console.WriteLine($"Question {i + 1}: {questions[i]}");
-                Console.WriteLine($"Response {i + 1}: {userResponses[i]}");
-                // adds space between each set of question/answer
-                Console.WriteLine();
+                for (int i = 0; i < questions.Length; i++)
+                {
+                    // used i + 1 so that the first question is labeled Question 1 (0 based indexing)
+                    Console.WriteLine($"Question {i + 1}: {questions[i]}");
+                    Console.WriteLine($"Response {i + 1}: {userResponses[i]}");
+                    // adds space between each set of question/answer
+                    Console.WriteLine();
+                }
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine($"Error! {ex.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error! {e.Message}");
             }
 
         }
@@ -367,7 +395,17 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             }
             return true;
         }
-            
+
+        static bool NullCheckerr(int? answer)
+        {
+            if (answer.HasValue)
+            {
+                Console.WriteLine("Please don't submit an empty answer.");
+                return false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// Checks to ensure there are no special characters entered in a name field
         /// </summary>
