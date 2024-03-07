@@ -362,11 +362,8 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
 
         static bool SimpleAnswerChecker(string answer)
         {
-            if (answer == "Yes")
+            if (answer.ToUpper() == "YES" || answer.ToUpper() == "NO")
             {
-                return true;
-            }
-            if  (answer == "No") {
                 return true;
             }
             else
