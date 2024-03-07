@@ -360,6 +360,11 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             }
         }
 
+        /// <summary>
+        /// Checks the user's response to ensure that they only enter yes or no (not case sensititve)
+        /// </summary>
+        /// <param name="answer">Accepts a string to validate as a parameter</param>
+        /// <returns>Returns true if the answer is in fact 'yes' or 'no'. Returns false if the answer was not 'yes' or 'no'</returns>
         static bool SimpleAnswerChecker(string answer)
         {
             if (answer.ToUpper() == "YES" || answer.ToUpper() == "NO")
