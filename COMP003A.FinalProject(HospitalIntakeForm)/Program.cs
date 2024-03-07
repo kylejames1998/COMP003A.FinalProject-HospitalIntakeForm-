@@ -53,7 +53,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 {
                     birthYear = Convert.ToInt32(userAnswer);
 
-                    if (BirthYearValidator(birthYear) && NullCheckerr(birthYear))
+                    if (BirthYearValidator(birthYear) && IntNullChecker(birthYear))
                     {
                         break;
                     }
@@ -396,14 +396,19 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             return true;
         }
 
-        static bool NullCheckerr(int? answer)
+        /// <summary>
+        /// Checks to ensure the value thats passed in as a parameter has a value and is not null
+        /// </summary>
+        /// <param name="answer">Accepts an integer as a parameter</param>
+        /// <returns>Returns false if the value is empty or null. Returns true if the answer has an integer value</returns>
+        static bool IntNullChecker(int? answer)
         {
             if (answer.HasValue)
             {
-                Console.WriteLine("Please don't submit an empty answer.");
-                return false;
+                return true;
             }
-            return true;
+            Console.WriteLine("Please don't submit an empty answer.");
+            return false;
         }
 
         /// <summary>
