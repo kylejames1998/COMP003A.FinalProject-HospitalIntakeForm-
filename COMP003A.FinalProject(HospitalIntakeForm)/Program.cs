@@ -66,14 +66,14 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.WriteLine("Please answer the following questions:");
             do
             {
-                Console.Write("What is your height: ");
+                Console.Write("Enter your height (in inches): ");
                 answer1 = Console.ReadLine();
             }
             while (!ContainsDigits(answer1));
             Console.WriteLine("Thank you!");
             do
             {
-                Console.Write("What is your weight: ");
+                Console.Write("Enter your weight (in pounds): ");
                 answer2 = Console.ReadLine();
             }
             while (!ContainsDigits(answer2));
