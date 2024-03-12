@@ -13,7 +13,6 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             string gender;
             string[] answers = new string[questions.Length];
             
-
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Welcome to James Hospital!");
             Console.ForegroundColor = ConsoleColor.Gray;
@@ -57,79 +56,9 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
 
             // Questionarre Beginning
             Console.WriteLine("Please answer the following questions:");
-            do
-            {
-                Console.Write($"{questions[0]}: ");
-                answers[0] = Console.ReadLine();
-            }
-            while (!ContainsDigits(answers[0]));
-            Console.WriteLine("Thank you!");
-            do
-            {
-                Console.Write($"{questions[1]}: ");
-                answers[1] = Console.ReadLine();
-            }
-            while (!ContainsDigits(answers[1]));
-            Console.WriteLine("Thank you!");
-            do
-            {
-                Console.Write($"{questions[2]}: ");
-                answers[2] = Console.ReadLine();
-            }
-            while (!SimpleAnswerChecker(answers[2]));
-            Console.WriteLine("Thank you!");
-            do
-            {
-                Console.Write($"{questions[3]}: ");
-                answers[3] = Console.ReadLine();
-            }
-            while(!SimpleAnswerChecker(answers[3]));
-            Console.WriteLine("Thank you!");
-            do
-            {
-                Console.Write($"{questions[4]}: ");
-                answers[4] = Console.ReadLine();
-            }
-            while (!NullChecker(answers[4]));
-            Console.WriteLine("Thank you!");
-            do
-            {
-                Console.Write($"{questions[5]}: ");
-                answers[5] = Console.ReadLine();
-            }
-            while (!NullChecker(answers[5]));
-            Console.WriteLine("Thank you!");
-            do
-            {
-                Console.Write($"{questions[6]}: ");
-                answers[6] = Console.ReadLine();
-            }
-            while (!SimpleAnswerChecker(answers[6]));
-            Console.WriteLine("Thank you!");
-            do
-            {
-               Console.Write($"{questions[7]}: ");
-                answers[7] = Console.ReadLine();
-            }
-            while (!SimpleAnswerChecker(answers[7]));
-            Console.WriteLine("Thank you!");
-            do
-            {
-                Console.Write($"{questions[8]}: ");
-                answers[8] = Console.ReadLine();
-            } 
-            while (!SimpleAnswerChecker(answers[8]));
-            Console.WriteLine("Thank you!");
-            do
-            {
-                Console.Write($"{questions[9]}: ");
-                answers[9] = Console.ReadLine();
-            }
-            while (!SimpleAnswerChecker(answers[9]));
-            Console.WriteLine("Thank you!");
-            
+            // Method that prompts user with all questions and allows them to answer
+           PromptUser(questions, answers);
             Console.Clear();
-
             // Profile summary section
             // changes header text color
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -146,7 +75,6 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.WriteLine();
             Console.WriteLine("Questionnaire:");
             // Loop to print all questions and answers to the console in order
-            // Catches basic exceptions as well as IndexOutOfRangeExceptions 
             for (int i = 0; i < questions.Length; i++)
             {
                 // used i + 1 so that the first question is labeled Question 1 (0 based indexing)
@@ -155,7 +83,6 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 // adds space between each set of question/answer
                 Console.WriteLine();
             }
-
 
         }
 
@@ -197,6 +124,10 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             if (answer == "")
             {
                 Console.WriteLine("Please don't submit an empty answer.");
+                return false;
+            }
+            else if (answer == "0")
+            {
                 return false;
             }
             return true;
@@ -373,6 +304,19 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             while (!ValidNameChecker(name));
 
             return name;
+        }
+
+        static void PromptUser(string[] questions, string[] answers)
+        {
+            for (int i = 0; i < questions.Length; i++)
+            {
+                do
+                {
+                    Console.WriteLine($"{questions[i]}: ");
+                    answers[i] = Console.ReadLine();
+                }
+                while (!NullChecker(answers[i]));
+            }
         }
 
     }
