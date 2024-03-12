@@ -8,41 +8,19 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
     {
         static void Main(string[] args)
         {
-            string fName;
-            string lName;
+            string[] questions = { "What is your height (in inches)", "What is your weight (in pounds)", "Are you having COVID symptoms?", "Do you use tobacco?", "Who is your primary physician?", "Who is your employer?", "Do you have a California Health Care Directive?", "Have you ever been diagnosed with diabetes?", "Do you exercise?", "Do you have a driver's license" };
             int birthYear;
             string gender;
-            string answer3;
-            string answer1;
-            string answer2;
-            string answer4;
-            string answer5;
-            string answer6;
-            string answer7;
-            string answer8;
-            string answer9;
-            string answer10;
+            string[] answers = new string[questions.Length];
+            
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Welcome to James Hospital!");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("Please fill out the following:");
             Console.WriteLine();
-            do
-            {
-                Console.Write("Please enter your first name: ");
-                fName = Console.ReadLine();
-            }
-            while (!ValidNameChecker(fName));
-            Console.WriteLine("Thank you!");
-
-            do
-            {
-                Console.Write("Please enter your last name: ");
-                lName = Console.ReadLine();
-            }
-            while (!ValidNameChecker(lName));
-            Console.WriteLine("Thank you!");
+            string fName = ValidNameProdution("first");
+            string lName = ValidNameProdution("last");
             
             do
             {
@@ -75,107 +53,81 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             while (!GenderValidator(gender));
             Console.WriteLine("Thank you!");
             Console.WriteLine();
-            // an array of strings that holds all the questionnaire questions
-            string[] questions = { "What is your height?", "What is your weight?", "Are you having COVID symptoms?", "Do you use tobacco?", "Who is your primary physician?", "Who is your employer?", "Do you have a California Health Care Directive?", "Have you ever been diagnosed with diabetes?", "Do you exercise?","Do you have a driver's license"};
             Console.Clear();
 
             // Questionarre Beginning
             Console.WriteLine("Please answer the following questions:");
             do
             {
-                Console.Write("Enter your height (in inches): ");
-                answer1 = Console.ReadLine();
+                Console.Write($"{questions[0]}: ");
+                answers[0] = Console.ReadLine();
             }
-            while (!ContainsDigits(answer1));
+            while (!ContainsDigits(answers[0]));
             Console.WriteLine("Thank you!");
             do
             {
-                Console.Write("Enter your weight (in pounds): ");
-                answer2 = Console.ReadLine();
+                Console.Write($"{questions[1]}: ");
+                answers[1] = Console.ReadLine();
             }
-            while (!ContainsDigits(answer2));
+            while (!ContainsDigits(answers[1]));
             Console.WriteLine("Thank you!");
             do
             {
-                Console.Write("Are you having COVID symptoms: ");
-                 answer3 = Console.ReadLine();
+                Console.Write($"{questions[2]}: ");
+                answers[2] = Console.ReadLine();
             }
-            while (!SimpleAnswerChecker(answer3));
+            while (!SimpleAnswerChecker(answers[2]));
             Console.WriteLine("Thank you!");
             do
             {
-                Console.Write("Do you use tobacco: ");
-                answer4 = Console.ReadLine();
+                Console.Write($"{questions[3]}: ");
+                answers[3] = Console.ReadLine();
             }
-            while(!SimpleAnswerChecker(answer4));
+            while(!SimpleAnswerChecker(answers[3]));
             Console.WriteLine("Thank you!");
             do
             {
-                Console.Write("Who is your primary physician: ");
-                answer5 = Console.ReadLine();
+                Console.Write($"{questions[4]}: ");
+                answers[4] = Console.ReadLine();
             }
-            while (!NullChecker(answer5));
+            while (!NullChecker(answers[4]));
             Console.WriteLine("Thank you!");
             do
             {
-                Console.Write("Who is your employer: ");
-                answer6 = Console.ReadLine();
+                Console.Write($"{questions[5]}: ");
+                answers[5] = Console.ReadLine();
             }
-            while (!NullChecker(answer6));
+            while (!NullChecker(answers[5]));
             Console.WriteLine("Thank you!");
             do
             {
-                Console.Write("Do you have a California Health Care Directive: ");
-                answer7 = Console.ReadLine();
+                Console.Write($"{questions[6]}: ");
+                answers[6] = Console.ReadLine();
             }
-            while (!SimpleAnswerChecker(answer7));
+            while (!SimpleAnswerChecker(answers[6]));
             Console.WriteLine("Thank you!");
             do
             {
-               Console.Write("Have you ever been diagnosed with diabetes: ");
-                answer8 = Console.ReadLine();
+               Console.Write($"{questions[7]}: ");
+                answers[7] = Console.ReadLine();
             }
-            while (!SimpleAnswerChecker(answer8));
+            while (!SimpleAnswerChecker(answers[7]));
             Console.WriteLine("Thank you!");
             do
             {
-                Console.Write("Do you exercise: ");
-                answer9 = Console.ReadLine();
+                Console.Write($"{questions[8]}: ");
+                answers[8] = Console.ReadLine();
             } 
-            while (!SimpleAnswerChecker(answer9));
+            while (!SimpleAnswerChecker(answers[8]));
             Console.WriteLine("Thank you!");
             do
             {
-                Console.Write("Do you have a driver's license: ");
-                answer10 = Console.ReadLine();
+                Console.Write($"{questions[9]}: ");
+                answers[9] = Console.ReadLine();
             }
-            while (!SimpleAnswerChecker(answer10));
+            while (!SimpleAnswerChecker(answers[9]));
             Console.WriteLine("Thank you!");
-            // An array of strings that holds all the user responses to the questions
-            string[] userResponses = new string[10];
-            try
-            {
-                AddToArray(answer1, userResponses);
-                AddToArray(answer2, userResponses);
-                AddToArray(answer3, userResponses);
-                AddToArray(answer4, userResponses);
-                AddToArray(answer5, userResponses);
-                AddToArray(answer6, userResponses);
-                AddToArray(answer7, userResponses);
-                AddToArray(answer8, userResponses);
-                AddToArray(answer9, userResponses);
-                AddToArray(answer10, userResponses);
-            }
-            catch (IndexOutOfRangeException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            // clears the console window before displaying the desired output
+            
             Console.Clear();
 
             // Profile summary section
@@ -190,65 +142,26 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.WriteLine($"Hello {lName}, {fName}");
             Console.WriteLine($"Age: {AgeCalulator(birthYear)}");
             // Converts and prints the correct gender to the console
-            // Catches basic exceptions as well as an argument exception (issue with the parameter passed in)
-            try
-            {
-                Console.WriteLine($"Gender: {GenderConversion(gender)}");
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine($"Error! {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error! {ex.Message}");
-            }
+            Console.WriteLine($"Gender: {GenderConversion(gender)}");
             Console.WriteLine();
             Console.WriteLine("Questionnaire:");
             // Loop to print all questions and answers to the console in order
             // Catches basic exceptions as well as IndexOutOfRangeExceptions 
-            try
+            for (int i = 0; i < questions.Length; i++)
             {
-                for (int i = 0; i < questions.Length; i++)
-                {
-                    // used i + 1 so that the first question is labeled Question 1 (0 based indexing)
-                    Console.WriteLine($"Question {i + 1}: {questions[i]}");
-                    Console.WriteLine($"Response {i + 1}: {userResponses[i]}");
-                    // adds space between each set of question/answer
-                    Console.WriteLine();
-                }
+                // used i + 1 so that the first question is labeled Question 1 (0 based indexing)
+                Console.WriteLine($"Question {i + 1}: {questions[i]}");
+                Console.WriteLine($"Response {i + 1}: {answers[i]}");
+                // adds space between each set of question/answer
+                Console.WriteLine();
             }
-            catch (IndexOutOfRangeException ex)
-            {
-                Console.WriteLine($"Error! {ex.Message}");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Error! {e.Message}");
-            }
+
 
         }
 
         /*
          * METHODS
          */
-
-        /// <summary>
-        /// Adds all user answers into an array.
-        /// </summary>
-        /// <param name="value">Accepts the value you want added to the array</param>
-        /// <param name="array">Accepts which array you want the value added into</param>
-        static void AddToArray(string value, string[] array)
-        {
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (string.IsNullOrEmpty(array[i]))
-                {
-                    array[i] = value;
-                    return;
-                }
-            }
-        }
 
         /// <summary>
         /// Checks name to validate the data and ensure that it doesn't include digits, special characters, or is null
@@ -442,6 +355,24 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 return false;
             }
             
+        }
+
+        /// <summary>
+        /// Produces a valid first and last name by prompting the user to enter their names.
+        /// </summary>
+        /// <param name="nameType">Accepts name type (first or last)</param>
+        /// <returns>Returns the valid name once entered by the user</returns>
+        static string ValidNameProdution(string nameType)
+        {
+            string name;
+            do
+            {
+                Console.Write($"Please enter your {nameType} name: ");
+                name = Console.ReadLine();
+            }
+            while (!ValidNameChecker(name));
+
+            return name;
         }
 
     }
