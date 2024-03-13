@@ -301,34 +301,24 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                     {
                         case 0: // height
                         case 1: // weight
-                            if (ContainsDigits(answers[i]) || answers[i] == "0")
+                            if (string.IsNullOrEmpty(answers[i]) || !ContainsDigits(answers[i]) || answers[i] == "0")
                             {
-                                Console.WriteLine("Please enter a valid number for height/weight.");
+                                Console.WriteLine("Please enter a valid non-zero number for height/weight.");
                                 answers[i] = null;
                             }
                             break;
                         case 2: // covid
-                            if (!SimpleAnswerChecker(answers[i]) && !NullChecker(answers[i]))
-                            {
-                                Console.WriteLine("Please enter either 'Yes' or 'No'.");
-                                answers[i] = null;
-                            }
-                            break;
-
                         case 3: // tobacco
-                            if (!SimpleAnswerChecker(answers[i]) && !NullChecker(answers[i]))
+                        case 6: // chd
+                        case 8: // exercise 
+                        case 9: // dl
+                            if (!SimpleAnswerChecker(answers[i]))
                             {
                                 Console.WriteLine("Please enter either 'Yes' or 'No'.");
                                 answers[i] = null;
                             }
                             break;
-                        case 4: // primary phyician 
-                            if (!NullChecker(answers[i]))
-                            {
-                                Console.WriteLine("Please do not submit an empty answer.");
-                                answers[i] = null;
-                            }
-                            break;
+                        case 4: // primary physician 
                         case 5: // employer
                             if (!NullChecker(answers[i]))
                             {
@@ -336,30 +326,14 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                                 answers[i] = null;
                             }
                             break;
-                        case 6: // chd
-                            if (!SimpleAnswerChecker(answers[i]) && !NullChecker(answers[i]))
-                            {
-                                Console.WriteLine("Please enter either 'Yes' or 'No'.");
-                                answers[i] = null;
-                            }
-                            break;
                         case 7: // diabetes
-                            if (!!SimpleAnswerChecker(answers[i]) && !NullChecker(answers[i]))
+                            if (!SimpleAnswerChecker(answers[i]))
                             {
                                 Console.WriteLine("Please enter either 'Yes' or 'No'.");
                                 answers[i] = null;
                             }
                             break;
-                        case 8: // exercise 
-                        case 9:  // dl
-                            if (!SimpleAnswerChecker(answers[i]) && !NullChecker(answers[i]))
-                            {
-                                Console.WriteLine("Please enter either 'Yes' or 'No'.");
-                                answers[i] = null;
-                            }
-                            break;
-
-                        default: 
+                        default:
                             if (!NullChecker(answers[i]))
                             {
                                 Console.WriteLine("Please do not submit an empty answer.");
@@ -368,7 +342,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                             break;
                     }
                 }
-                while (answers[i] == null || answers[i] == "0");
+                while (answers[i] == null);
             }
         }
 
