@@ -312,6 +312,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                         case 6: // chd
                         case 8: // exercise 
                         case 9: // dl
+                        case 7: // diabetes
                             if (!SimpleAnswerChecker(answers[i]))
                             {
                                 Console.WriteLine("Please enter either 'Yes' or 'No'.");
@@ -323,13 +324,6 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                             if (!NullChecker(answers[i]))
                             {
                                 Console.WriteLine("Please do not submit an empty answer.");
-                                answers[i] = null;
-                            }
-                            break;
-                        case 7: // diabetes
-                            if (!SimpleAnswerChecker(answers[i]))
-                            {
-                                Console.WriteLine("Please enter either 'Yes' or 'No'.");
                                 answers[i] = null;
                             }
                             break;
