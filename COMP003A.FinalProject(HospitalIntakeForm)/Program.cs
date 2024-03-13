@@ -370,7 +370,7 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                             break;
                     }
                 }
-                while (!NullChecker(answers[i]) || answers[i] == "0");
+                while (answers[i] == null || answers[i] == "0");
             }
         }
 
