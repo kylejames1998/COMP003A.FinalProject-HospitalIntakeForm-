@@ -9,7 +9,6 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
         static void Main(string[] args)
         {
             string[] questions = { "What is your height (in inches)", "What is your weight (in pounds)", "Are you having COVID symptoms?", "Do you use tobacco?", "Who is your primary physician?", "Who is your employer?", "Do you have a California Health Care Directive?", "Have you ever been diagnosed with diabetes?", "Do you exercise?", "Do you have a driver's license" };
-            int birthYear;
             string gender;
             string[] answers = new string[questions.Length];
             
@@ -20,28 +19,8 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.WriteLine();
             string fName = ValidNameProdution("first");
             string lName = ValidNameProdution("last");
-            
-            do
-            {
-                Console.Write("Please enter your birth year: ");
-                string userAnswer = Console.ReadLine();
 
-                try
-                {
-                    birthYear = Convert.ToInt32(userAnswer);
-
-                    if (BirthYearValidator(birthYear) && IntNullChecker(birthYear))
-                    {
-                        break;
-                    }
-                    Console.WriteLine("Invalid! Please enter a valid integer." );
-                }
-                catch (FormatException ex)
-                {
-                    Console.WriteLine($"Invalid! {ex.Message}");
-                }
-            }
-            while (true);
+           int birthYear = BirthYearAsker();
             Console.WriteLine("Thank you!");
 
             do
@@ -306,19 +285,123 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             return name;
         }
 
+        /// <summary>
+        /// PRompts the user to answer all questions in the questionaare using a loop
+        /// </summary>
+        /// <param name="questions">Acceps the questions array as a parameter</param>
+        /// <param name="answers">Accepts the answers array as a parameter</param>
         static void PromptUser(string[] questions, string[] answers)
         {
             for (int i = 0; i < questions.Length; i++)
             {
                 do
                 {
-                    Console.WriteLine($"{questions[i]}: ");
+                    Console.Write($"{questions[i]}: ");
                     answers[i] = Console.ReadLine();
+
+                    switch (i)
+                    {
+                        case 0: // height
+                        case 1: // weight
+                            if (ContainsDigits(answers[i]) || answers[i] == "0")
+                            {
+                                Console.WriteLine("Please enter a valid number for height/weight.");
+                                answers[i] = null;
+                            }
+                            break;
+                        case 2: // covid
+                            if (!SimpleAnswerChecker(answers[i]) && !NullChecker(answers[i]))
+                            {
+                                Console.WriteLine("Please enter either 'Yes' or 'No'.");
+                                answers[i] = null;
+                            }
+                            break;
+
+                        case 3: // tobacco
+                            if (!SimpleAnswerChecker(answers[i]) && !NullChecker(answers[i]))
+                            {
+                                Console.WriteLine("Please enter either 'Yes' or 'No'.");
+                                answers[i] = null;
+                            }
+                            break;
+                        case 4: // primary phyician 
+                            if (!NullChecker(answers[i]))
+                            {
+                                Console.WriteLine("Please do not submit an empty answer.");
+                                answers[i] = null;
+                            }
+                            break;
+                        case 5: // employer
+                            if (!NullChecker(answers[i]))
+                            {
+                                Console.WriteLine("Please do not submit an empty answer.");
+                                answers[i] = null;
+                            }
+                            break;
+                        case 6: // chd
+                            if (!SimpleAnswerChecker(answers[i]) && !NullChecker(answers[i]))
+                            {
+                                Console.WriteLine("Please enter either 'Yes' or 'No'.");
+                                answers[i] = null;
+                            }
+                            break;
+                        case 7: // diabetes
+                            if (!!SimpleAnswerChecker(answers[i]) && !NullChecker(answers[i]))
+                            {
+                                Console.WriteLine("Please enter either 'Yes' or 'No'.");
+                                answers[i] = null;
+                            }
+                            break;
+                        case 8: // exercise 
+                        case 9:  // dl
+                            if (!SimpleAnswerChecker(answers[i]) && !NullChecker(answers[i]))
+                            {
+                                Console.WriteLine("Please enter either 'Yes' or 'No'.");
+                                answers[i] = null;
+                            }
+                            break;
+
+                        default: 
+                            if (!NullChecker(answers[i]))
+                            {
+                                Console.WriteLine("Please do not submit an empty answer.");
+                                answers[i] = null;
+                            }
+                            break;
+                    }
                 }
-                while (!NullChecker(answers[i]));
+                while (!NullChecker(answers[i]) || answers[i] == "0");
             }
         }
 
+        /// <summary>
+        /// Prompts the user to enter their birth year. It is then validated and a clean birthYear is returned.
+        /// </summary>
+        /// <returns>Returns a clean birthYear</returns>
+        static int BirthYearAsker()
+        {
+            do
+            {
+                Console.Write("Please enter your birth year: ");
+                string userAnswer = Console.ReadLine();
+
+                try
+                {
+                    int birthYear = Convert.ToInt32(userAnswer);
+
+                    if (BirthYearValidator(birthYear) && IntNullChecker(birthYear))
+                    {
+                        return birthYear;
+                    }
+                    Console.WriteLine("Invalid! Please enter a valid integer.");
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine($"Invalid! {ex.Message}");
+                }
+            }
+            while (true);
+        }
     }
     
 }
