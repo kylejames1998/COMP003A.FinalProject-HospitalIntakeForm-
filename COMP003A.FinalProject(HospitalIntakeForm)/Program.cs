@@ -19,7 +19,6 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
             Console.WriteLine();
             string fName = ValidNameProdution("first");
             string lName = ValidNameProdution("last");
-
            int birthYear = BirthYearAsker();
             Console.WriteLine("Thank you!");
 
@@ -62,7 +61,6 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                 // adds space between each set of question/answer
                 Console.WriteLine();
             }
-
         }
 
         /*
