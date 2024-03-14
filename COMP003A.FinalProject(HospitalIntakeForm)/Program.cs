@@ -307,20 +307,20 @@ namespace COMP003A.FinalProject_HospitalIntakeForm_
                                 answers[i] = null;
                             }
                             break;
-                        case 2: // covid
-                        case 3: // tobacco
-                        case 6: // chd
-                        case 8: // exercise 
-                        case 9: // dl
-                        case 7: // diabetes
+                        case 2: // covid?
+                        case 3: // tobacco use?
+                        case 6: // calif health directive?
+                        case 8: // exercise?
+                        case 9: // drivers license?
+                        case 7: // diabetes?
                             if (!SimpleAnswerChecker(answers[i]))
                             {
                                 Console.WriteLine("Please enter either 'Yes' or 'No'.");
                                 answers[i] = null;
                             }
                             break;
-                        case 4: // primary physician 
-                        case 5: // employer
+                        case 4: // primary physician?
+                        case 5: // employer?
                             if (!NullChecker(answers[i]))
                             {
                                 Console.WriteLine("Please do not submit an empty answer.");
